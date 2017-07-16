@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <style>
+	#wrapper {
+		overflow: hidden;
+	}
+	#outer {
+		overflow: scroll;
+		height: 100%
+	}
+	
+	#axis_container {
+		overflow: scroll
+	}
+	
+	.axis text {
+		font: 8px sans-serif;
+	}
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+
+	.composer:hover rect {
+		fill: darkblue;
+	}
+	.composer:hover rect.work {
+		fill: orange;
+	}
+	.composer:hover text {
+		fill: white;
+	}
+	
+	#tooltip {
+		position: absolute;
+		border-style: solid black;
+		background: white
+	}
+  </style>
+  
+  <head>
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<title>Music Timeline</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  
+  <body>
+	<div id="wrapper"><div id="outer">
+		<svg id="chart"></svg>
+	</div></div>
+
+	<div id="axis_container">
+		<svg id="axis_svg"></svg>
+	</div>
+
+	<div id="tooltip">
+	</div>
+    <script type="text/javascript">
+		d3.select("#wrapper")
+			.attr("style", "height: " + window.innerHeight * 0.9 + "px");
+		var outer = document.getElementById('outer');
+		outer.style.paddingBottom = outer.offsetHeight - outer.clientHeight + "px";
+		
+		var pixelsPerYear = 4;
+		var barHeight = 20;
+		var dateToString = d3.timeFormat("%B %e, %Y");
+		
+		var margin = {top: 20, bottom: 20, right: 30, left: 30},
+			width = window.innerWidth - margin.right - margin.left,
+			height = (window.innerHeight * 0.9) - margin.top - margin.bottom;
+		
+		var xScale = d3.scaleTime();
+		//var yScale = d3.scaleLinear(); 
+		
+		var composerData = [];
+
+		var chart = d3.select("#chart")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+		var tooltip = d3.select("#tooltip")
+			.attr("opacity", 0);
+		
+		chart.append("g")
+			.attr("class", "timeline")
+			.attr("width", width)
+			.attr("height", height - barHeight) 
+			.attr("overflow", "scroll");
+			
+		var timeline = d3.select(".timeline");
+			
+		function getShortName(name) {
+			if (name.startsWith("des Prez")) {
+				return "Josquin";
+			}
+			else {
+				var commaIndex = name.indexOf(",");
+				return name.substring(0, commaIndex);
+			}
+		}
+		
+		function parseComposer(d) {
+			return {
+				name: d.Composer,
+				shortName: getShortName(d.Composer),
+				birth: new Date(d.Birth),
+				death: d.Death === "N/A" ? new Date() : new Date(d.Death),
+				country: d.Nationality,
+				barWidth: function(d) { return xScale(d.death) - xScale(d.birth); },
+				works: {}
+			};
+		}
+			
+		d3.csv("Composers.csv", parseComposer, function(error, data) {
+			if (error) throw error;
+			console.log(data[0]);
+			
+			composerData = data;
+			var today = new Date();
+			var minDate = d3.min(data, function(d) { return d.birth; });
+			
+			var chartHeight = data.length * barHeight;
+			var chartWidth = (today.getFullYear() - minDate.getFullYear()) * pixelsPerYear;
+			
+			chart.attr("height", chartHeight)
+				.attr("width", chartWidth + margin.right);
+			
+			xScale.domain([minDate, today])
+				.range([0, chartWidth]);
+			
+			//yScale.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+			
+			d3.select("#axis_svg")
+				.attr("height", barHeight)
+				.attr("width", chartWidth + margin.left + margin.right)
+			  .append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + margin.left + ",0)")
+				.call(d3.axisBottom(xScale));
+			/*
+			chart.append("g")
+				.attr("class", "axis y-axis")
+				.call(d3.axisLeft(yScale).ticks(10, "%"))
+			  .append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 5)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("Frequency");
+			*/
+
+			var bar = timeline.selectAll(".composer")
+			  .data(composerData)
+			  .enter().append("g")
+				.attr("class", "composer")
+				.attr('id', function(d) { return d.shortName; })
+				.attr("transform", function(d, i) { return "translate(" + xScale(d.birth) + "," + (i * barHeight) + ")"; });
+				
+			bar.append("rect")
+				.attr("width", function(d) {
+					var barWidth = xScale(d.death) - xScale(d.birth);
+					d.barWidth = barWidth;
+					return barWidth;
+				})
+				.attr("height", barHeight * 0.8)
+				.attr("fill", "lightblue")
+				.on("mouseover", function(d) {
+					tooltip.transition()
+						.duration(400)
+						.style("opacity", .9);
+					tooltip.html(d.name + "<br/> Born: " + dateToString(d.birth) + "<br/> Died: " + dateToString(d.death) + "<br/>Nationality: " + d.country)
+						.style("left", d3.event.pageX + "px")
+						.style("top", d3.event.pageY + "px");
+				})
+				.on("mousemove", function(d) {
+					tooltip.style("left", (d3.event.pageX + 15) + "px")
+						.style("top", (d3.event.pageY + 15) + "px");
+				})
+				.on("mouseout", function(d) {
+					tooltip.transition()
+						.duration(400)
+						.style("opacity", 0)
+						.on("end", function() {
+							tooltip.style("left", "0px")
+							.style("top", height + "px");
+						});
+				});;
+				
+			bar.append("text")
+				.attr("x", 3)
+				.attr("y", 14)
+				.attr("font-size", 16)
+				.text(function(d) { return d.shortName; })
+				.on("mouseover", function(d) {
+					tooltip.transition()
+						.duration(400)
+						.style("opacity", .9);
+					tooltip.html(d.name + "<br/> Born: " + dateToString(d.birth) + "<br/> Died: " + dateToString(d.death) + "<br/>Nationality: " + d.country)
+						.style("left", d3.event.pageX + "px")
+						.style("top", d3.event.pageY + "px");
+				})
+				.on("mouseout", function(d) {
+					tooltip.transition()
+						.duration(400)
+						.style("opacity", 0)
+						.on("end", function() {
+							tooltip.style("left", "0px")
+							.style("top", height + "px");
+						});
+				});;
+		});
+		
+			
+		function parseWork(d) {
+			return {
+				name: d.Work,
+				creator: getShortName(d.Composer),
+				type: d.Type,
+				year: d.Date,
+				date: new Date(+d.Date, 6, 15)
+			};
+		}
+		
+		d3.csv("Works.csv", parseWork, function(error, data) {
+			if (error) throw error;
+			
+			var workWidth = 3;
+			data.forEach(function(work) {
+				var composer = composerData.find(function(item) { return item.shortName === work.creator; });
+				
+				if (composer.xScale === undefined) {
+					composer.xScale = d3.scaleTime()
+					.domain([composer.birth, composer.death])
+					.range([0, composer.barWidth]);
+				}
+				
+				if (!composer.works.hasOwnProperty(work.year)) {
+					composer.works[work.year] = work.name + "<br/>" + work.year + "<br/>" + work.type;
+				}
+				else {
+					composer.works[work.year] += "<br/><br/>";
+					composer.works[work.year] += work.name + "<br/>" + work.year + "<br/>" + work.type;
+				}
+				
+				d3.select("#" + work.creator)
+				  .append("rect")
+					.attr("class", "work")
+					.attr("fill", "black")
+					.attr("fill-opacity", 0.6)
+					.attr("height", barHeight * 0.8)
+					.attr("width", workWidth)
+					.attr("transform", "translate(" + composer.xScale(work.date) + ",0)")
+					.on("mouseover", function(d) {
+						tooltip.transition()
+							.duration(400)
+							.style("opacity", .9);
+						tooltip.html(composer.works[work.year])
+							.style("left", (d3.event.pageX + 15) + "px")
+							.style("top", (d3.event.pageY + 15) + "px");
+					})
+					.on("mouseout", function(d) {
+						tooltip.transition()
+							.duration(400)
+							.style("opacity", 0)
+							.on("end", function() {
+								tooltip.style("left", "0px")
+								.style("top", height + "px");
+							});
+					});
+				
+			});
+		});
+		
+		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
+		
+		function scrollLinker(div) {
+			var scrollAmount = document.getElementById('outer').scrollLeft;
+			div.scrollLeft = scrollAmount;
+		}
+	</script>
+  </body>
+  
+</html>
