@@ -108,7 +108,7 @@ Don Giovanni,"Mozart, Wolfgang Amadeus",Opera,1787
 Cosi fan tutte,"Mozart, Wolfgang Amadeus",Opera,1790
 Idomeneo,"Mozart, Wolfgang Amadeus",Opera,1781
 The Abduction from the Seraglio,"Mozart, Wolfgang Amadeus",Opera,1782
-Requiem Mass in D minor,"Mozart, Wolfgang Amadeus",Mass,1791
+Requiem Mass in D minor,"Mozart, Wolfgang Amadeus",Requiem mass,1791
 Great G minor Symphony (No. 40),"Mozart, Wolfgang Amadeus",Symphony,1788
 Jupiter Symphony (No. 41),"Mozart, Wolfgang Amadeus",Symphony,1788
 Eine Kleine Nachtmusik,"Mozart, Wolfgang Amadeus",Serenade,1787
@@ -187,7 +187,7 @@ The Capulets and the Montagues,"Bellini, Vincenzo",Opera,1830
 Il pirata,"Bellini, Vincenzo",Opera,1827
 Symphonie fantastique,"Berlioz, Hector",Symphony,1830
 Harold in Italy,"Berlioz, Hector",Symphony,1834
-Requiem (Grande Messe des morts),"Berlioz, Hector",Mass,1837
+Requiem (Grande Messe des morts),"Berlioz, Hector",Requiem mass,1837
 The Damnation of Faust,"Berlioz, Hector","""Légende dramatique""",1845
 Treatise on Orchestration,"Berlioz, Hector",Treatise,1844
 Grand Funeral and Triumphal Symphony,"Berlioz, Hector",Symphony,1840
@@ -232,14 +232,14 @@ Spring Symphony (No. 1),"Schumann, Robert",Symphony,1841
 Papillons,"Schumann, Robert",Suite,1831
 Mephisto Waltz No. 1,"Liszt, Franz",Waltz,1862
 Transcendental Études,"Liszt, Franz",Études,1852
-Les préludes,"Liszt, Franz",Symphonic poem,1854
+Les préludes,"Liszt, Franz",Tone poem,1854
 Hungarian Rhapsody No. 2,"Liszt, Franz",Rhapsody,1847
 Years of Pilgrimage,"Liszt, Franz",Suites,1877
 Totentanz,"Liszt, Franz",Dies Irae Variations,1859
 Liebesträume,"Liszt, Franz",Nocturnes,1850
 Faust Symphony,"Liszt, Franz",Symphony,1857
 Grand Paganini Études,"Liszt, Franz",Études,1851
-Mazeppa,"Liszt, Franz",Symphonic poem,1851
+Mazeppa,"Liszt, Franz",Tone poem,1851
 Tristan und Isolde,"Wagner, Richard",Opera,1865
 The Master-Singers of Nuremberg,"Wagner, Richard",Opera,1868
 The Flying Dutchman,"Wagner, Richard",Opera,1843
@@ -259,7 +259,7 @@ Otello,"Verdi, Giuseppe",Opera,1887
 Falstaff,"Verdi, Giuseppe",Opera,1893
 Nabucco,"Verdi, Giuseppe",Opera,1842
 La forza del destino,"Verdi, Giuseppe",Opera,1862
-Messa da Requiem,"Verdi, Giuseppe",Mass,1874
+Messa da Requiem,"Verdi, Giuseppe",Requiem mass,1874
 Faust,"Gounod, Charles",Opera,1859
 Roméo et Juliette,"Gounod, Charles",Opera,1867
 Ave Maria,"Gounod, Charles",Setting,1853
@@ -270,9 +270,9 @@ The Tales of Hoffmann,"Offenbach, Jacques",Opera,1880
 La Vie parisenne,"Offenbach, Jacques",Operetta,1866
 La belle Hélène,"Offenbach, Jacques",Operetta,1864
 The Bartered Bride,"Smetana, Bedřich",Opera,1866
-Má vlast,"Smetana, Bedřich",Symphonic poems,1879
+Má vlast,"Smetana, Bedřich",Tone poems,1879
 From My Life Quartet,"Smetana, Bedřich",String quartet,1876
-Hakon Jarl,"Smetana, Bedřich",Symphonic poem,1861
+Hakon Jarl,"Smetana, Bedřich",Tone poem,1861
 The Brandenburgers in Bohemia,"Smetana, Bedřich",Opera,1863
 Triumphal Symphony,"Smetana, Bedřich",Symphony,1854
 Romantic Symphony (No. 4),"Bruckner, Anton",Symphony,1874
@@ -291,6 +291,73 @@ Kaiser-Walzer (Emperor Waltz),"Strauss II, Johann",Waltz,1889
 Pizzicato Polka,"Strauss II, Johann",Polka,1869
 The Queen's Lace Handkerchief,"Strauss II, Johann",Operetta,1880
 Roses from the South,"Strauss II, Johann",Waltz,1880
+A German Requiem,"Brahms, Johannes",Requiem mass,1868
+Academic Festival Overture,"Brahms, Johannes",Overture,1880
+Lullaby,"Brahms, Johannes",Lied,1868
+Hungarian Dances,"Brahms, Johannes",Dances,1869
+Tragic Overture,"Brahms, Johannes",Overture,1880
+Variations on a Theme of Haydn,"Brahms, Johannes",Variations,1873
+Symphony No. 1 in C minor,"Brahms, Johannes",Symphony,1876
+Violin Concerto in D major,"Brahms, Johannes",Violin concerto,1878
+In the Steppes of Central Asia,"Borodin, Alexander",Tone poem,1880
+Prince Igor,"Borodin, Alexander",Opera,1887
+Polovtsian Dances,"Borodin, Alexander",Dances,1887
+String Quartet No. 2 in D major,"Borodin, Alexander",String quartet,1881
+Petite Suite,"Borodin, Alexander",Suite,1885
+Prisoner of the Caucasus,"Cui, Cesar",Opera,1883
+The Captain's Daughter,"Cui, Cesar",Opera,1911
+Little Red Riding Hood,"Cui, Cesar",Opera,1911
+Kaleidoscope,"Cui, Cesar",Other,1893
+William Ratcliff,"Cui, Cesar",Opera,1869
+Feast in Time of Plague,"Cui, Cesar",Opera,1901
+Danse macabre,"Saint-Saëns, Camille",Tone poem,1874
+Samson and Delilah,"Saint-Saëns, Camille",Opera,1877
+The Carnival of the Animals,"Saint-Saëns, Camille",Suite,1886
+Organ Symphony (No. 3),"Saint-Saëns, Camille",Symphony,1886
+Introduction and Rondo Capriccioso,"Saint-Saëns, Camille",Other,1863
+Egyptian Concerto,"Saint-Saëns, Camille",Piano concerto,1896
+The Assassination of the Duko of Guise,"Saint-Saëns, Camille",Film score,1908
+Piano Concerto No.2 in G minor,"Saint-Saëns, Camille",Piano concerto,1868
 Islamey: Oriental Fantasy,"Balakirev, Mily",Fantasia,1869
-Tamara,"Balakirev, Mily",Symphonic poem,1882
+Tamara,"Balakirev, Mily",Tone poem,1882
 King Lear,"Balakirev, Mily",Incidental music,1861
+Scottish Fantasy,"Bruch, Max",Fantasia,1880
+Kol Nidrei,"Bruch, Max",Adagio,1880
+Violin Concerto No. 1 in G minor,"Bruch, Max",Violin concerto,1866
+Carmen,"Bizet, Georges",Opera,1875
+The Pearl Fishers,"Bizet, Georges",Opera,1863
+L'Arlésienne,"Bizet, Georges",Incidental music,1872
+Roma Symphony,"Bizet, Georges",Symphony,1871
+Boris Godunov,"Mussorgsky, Modest",Opera,1873
+Night on Bald Mountain,"Mussorgsky, Modest",Tone poem,1867
+Pictures at an Exhibition,"Mussorgsky, Modest",Suite,1874
+Songs and Dances of Death,"Mussorgsky, Modest",Song cycle,1877
+The Nursery,"Mussorgsky, Modest",Song cycle,1872
+Swan Lake,"Tchaikovsky, Pyotr Ilyich",Ballet,1876
+Sleeping Beauty,"Tchaikovsky, Pyotr Ilyich",Ballet,1889
+The Nutcracker,"Tchaikovsky, Pyotr Ilyich",Ballet,1892
+Romeo and Juliet Fantasy Overture,"Tchaikovsky, Pyotr Ilyich",Overture,1880
+1812 Overture,"Tchaikovsky, Pyotr Ilyich",Overture,1880
+Marche slave,"Tchaikovsky, Pyotr Ilyich",Tone poem,1876
+Francesca da Rimini,"Tchaikovsky, Pyotr Ilyich",Tone poem,1876
+Pathétique Symphony (No. 6),"Tchaikovsky, Pyotr Ilyich",Symphony,1893
+Little Russian Symphony (No. 2),"Tchaikovsky, Pyotr Ilyich",Symphony,1872
+Manfred Symphony,"Tchaikovsky, Pyotr Ilyich",Symphony,1885
+Winter Daydreams (No. 1),"Tchaikovsky, Pyotr Ilyich",Symphony,1866
+Variations on a Rococo Theme,"Tchaikovsky, Pyotr Ilyich",Variations,1877
+Eugene Onegin,"Tchaikovsky, Pyotr Ilyich",Opera,1879
+Piano Concerto No. 1 in B-flat minor,"Tchaikovsky, Pyotr Ilyich",Piano concerto,1875
+Violin Concerto in D major,"Tchaikovsky, Pyotr Ilyich",Violin concerto,1878
+American String Quartet (No. 12),"Dvořák, Antonín",String quartet,1893
+New World Symphony (No. 9),"Dvořák, Antonín",Symphony,1893
+Slavonic Dances,"Dvořák, Antonín",Dances,1886
+Dumky Trio (No. 4),"Dvořák, Antonín",Piano trio,1891
+Rusalka,"Dvořák, Antonín",Opera,1901
+Cello Concerto in B minor,"Dvořák, Antonín",Cello concerto,1895
+The Bells of Zlonice (No. 1),"Dvořák, Antonín",Symphony,1865
+Moravian Duets,"Dvořák, Antonín",Settings,1881
+The Water Goblin,"Dvořák, Antonín",Tone poem,1896
+Manon,"Massenet, Jules",Opera,1884
+Werther,"Massenet, Jules",Opera,1892
+"""Méditation"" from Thaïs","Massenet, Jules",Intermezzo,1894
+Esclarmonde,"Massenet, Jules",Opera,1889
