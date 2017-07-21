@@ -1,10 +1,10 @@
 Work,Composer,Type,Date
 Nixon in China,"Adams, John",Opera,1987
 Doctor Atomic,"Adams, John",Opera,2005
-Harmonielehre,"Adams, John",Other,1985
+Harmonielehre,"Adams, John",Piece for orchestra,1985
 Short Ride in a Fast Machine,"Adams, John",Fanfare,1986
-On the Transmigration of Souls,"Adams, John",Other,2002
-Shaker Loops,"Adams, John",Other,1978
+On the Transmigration of Souls,"Adams, John",Piece for orchestra/chorus,2002
+Shaker Loops,"Adams, John",String septet,1978
 Phrygian Gates,"Adams, John",Piano,1978
 The Death of Klinghoffer,"Adams, John",Opera,1991
 Tromba Lontana,"Adams, John",Fanfare,1986
@@ -55,7 +55,7 @@ Viola Concerto in G major,"Telemann, Georg",Viola concerto,1721
 Don Quixote,"Telemann, Georg",Serenata,1761
 Pimpinone,"Telemann, Georg",Opera,1725
 Twelve Fantasias for Viola da Gamba,"Telemann, Georg",Fantasias,1735
-Passions,"Telemann, Georg",Other,1767
+Passions,"Telemann, Georg",Settings,1767
 Castor et Pollux,"Rameau, Jean-Philippe",Opera,1737
 Les Indes Galantes,"Rameau, Jean-Philippe",Opera,1735
 Hippolyte et Aricie,"Rameau, Jean-Philippe",Opera,1733
@@ -147,7 +147,7 @@ The Arpeggio (No. 1),"Paganini, Niccolò",Caprice,1817
 The Trill (No. 6),"Paganini, Niccolò",Caprice,1817
 La Chasse (No. 9),"Paganini, Niccolò",Caprice,1817
 The Devil's Laughter (No. 13),"Paganini, Niccolò",Caprice,1817
-Moto Perpetuo (MS 72),"Paganini, Niccolò",Other,1835
+Moto Perpetuo (MS 72),"Paganini, Niccolò",Piece for violin/orchestra,1835
 La Campanella/La Clochette (MS 48),"Paganini, Niccolò",Violin concerto,1826
 Cantabile in D (MS 109),"Paganini, Niccolò",Duet,1824
 Der Freischütz,"Weber, Carl Maria von",Opera,1821
@@ -204,7 +204,7 @@ Italian Symphony (No. 4),"Mendelssohn, Felix",Symphony,1833
 A Midsummer Night's Dream,"Mendelssohn, Felix",Incidental music,1842
 Reformation Symphony (No. 5),"Mendelssohn, Felix",Symphony,1830
 Songs without Words,"Mendelssohn, Felix",Lieder (song cycle),1845
-Octet in E flat major,"Mendelssohn, Felix",String Octet,1825
+Octet in E-flat major,"Mendelssohn, Felix",String Octet,1825
 Violin Concerto in E minor,"Mendelssohn, Felix",Violin concerto,1844
 Elijah,"Mendelssohn, Felix",Oratorio,1846
 Revolutionary Étude,"Chopin, Frederic",Étude,1831
@@ -225,9 +225,9 @@ Aeolian Harp Étude,"Chopin, Frederic",Étude,1836
 Kreisleriana,"Schumann, Robert",Fantasia,1838
 Dichterliebe,"Schumann, Robert",Lieder (song cycle),1840
 Rhenish Symphony (No. 3),"Schumann, Robert",Symphony,1850
-Carnaval,"Schumann, Robert",Other,1835
-Scenes from Childhood,"Schumann, Robert",Other,1838
-Album for the Young,"Schumann, Robert",Other,1848
+Carnaval,"Schumann, Robert",Piece for solo piano,1835
+Scenes from Childhood,"Schumann, Robert",Pieces for solo piano,1838
+Album for the Young,"Schumann, Robert",Pieces for solo piano,1848
 Spring Symphony (No. 1),"Schumann, Robert",Symphony,1841
 Papillons,"Schumann, Robert",Suite,1831
 Mephisto Waltz No. 1,"Liszt, Franz",Waltz,1862
@@ -263,7 +263,7 @@ Messa da Requiem,"Verdi, Giuseppe",Requiem mass,1874
 Faust,"Gounod, Charles",Opera,1859
 Roméo et Juliette,"Gounod, Charles",Opera,1867
 Ave Maria,"Gounod, Charles",Setting,1853
-Funeral March of a Marionette,"Gounod, Charles",Other,1872
+Funeral March of a Marionette,"Gounod, Charles",Piece for solo piano,1872
 Pontifical Anthem,"Gounod, Charles",Anthem,1869
 Orpheus in the Underworld,"Offenbach, Jacques",Operetta,1858
 The Tales of Hoffmann,"Offenbach, Jacques",Opera,1880
@@ -307,14 +307,14 @@ Petite Suite,"Borodin, Alexander",Suite,1885
 Prisoner of the Caucasus,"Cui, Cesar",Opera,1883
 The Captain's Daughter,"Cui, Cesar",Opera,1911
 Little Red Riding Hood,"Cui, Cesar",Opera,1911
-Kaleidoscope,"Cui, Cesar",Other,1893
+Kaleidoscope,"Cui, Cesar",Piece for piano/violin,1893
 William Ratcliff,"Cui, Cesar",Opera,1869
 Feast in Time of Plague,"Cui, Cesar",Opera,1901
 Danse macabre,"Saint-Saëns, Camille",Tone poem,1874
 Samson and Delilah,"Saint-Saëns, Camille",Opera,1877
 The Carnival of the Animals,"Saint-Saëns, Camille",Suite,1886
 Organ Symphony (No. 3),"Saint-Saëns, Camille",Symphony,1886
-Introduction and Rondo Capriccioso,"Saint-Saëns, Camille",Other,1863
+Introduction and Rondo Capriccioso,"Saint-Saëns, Camille",Introduction/rondo,1863
 Egyptian Concerto,"Saint-Saëns, Camille",Piano concerto,1896
 The Assassination of the Duko of Guise,"Saint-Saëns, Camille",Film score,1908
 Piano Concerto No.2 in G minor,"Saint-Saëns, Camille",Piano concerto,1868
@@ -359,5 +359,138 @@ Moravian Duets,"Dvořák, Antonín",Settings,1881
 The Water Goblin,"Dvořák, Antonín",Tone poem,1896
 Manon,"Massenet, Jules",Opera,1884
 Werther,"Massenet, Jules",Opera,1892
-"""Méditation"" from Thaïs","Massenet, Jules",Intermezzo,1894
+"""Méditation"" from Thaïs","Massenet, Jules",Interlude,1894
 Esclarmonde,"Massenet, Jules",Opera,1889
+Lyric Pieces,"Grieg, Edvard",Pieces for solo piano,1901
+Holberg Suite,"Grieg, Edvard",Suite,1884
+Peer Gynt,"Grieg, Edvard",Incidental music,1876
+Morning Mood,"Grieg, Edvard",Incidental music,1875
+In the Hall of the Mountain King,"Grieg, Edvard",Incidental music,1875
+Wedding Day at Troldhaugen,"Grieg, Edvard",Piece for solo piano,1896
+Arietta,"Grieg, Edvard",Piece for solo piano,1867
+Remembrances,"Grieg, Edvard",Waltz,1901
+Piano Concerto in A minor,"Grieg, Edvard",Piano concerto,1868
+March of the Trolls/Dwarfs,"Grieg, Edvard",Piece for solo piano,1891
+Capriccio Espagnol,"Rimsky-Korsakov, Nikolai",Suite,1887
+Russian Easter Festival Overture,"Rimsky-Korsakov, Nikolai",Overture,1888
+Scheherazade,"Rimsky-Korsakov, Nikolai",Suite,1888
+"""Flight of the Bumblebee"" from The Tale of Tsar Saltan","Rimsky-Korsakov, Nikolai",Interlude,1900
+The Snow Maiden,"Rimsky-Korsakov, Nikolai",Opera,1881
+The Golden Cockerel,"Rimsky-Korsakov, Nikolai",Opera,1907
+Pagliacci,"Leoncavallo, Ruggero",Opera,1892
+Mattinata,"Leoncavallo, Ruggero",Song,1904
+Zazà,"Leoncavallo, Ruggero",Opera,1900
+Enigma Variations,"Elgar, Edward",Variations,1899
+Pomp and Circumstance No. 1,"Elgar, Edward",March,1901
+Cello Concerto in E minor,"Elgar, Edward",Cello concerto,1919
+The Dream of Gerontius,"Elgar, Edward",Oratorio,1900
+Salut d'Amour,"Elgar, Edward",Piece for piano/violin,1888
+Violin Concerto in B minor,"Elgar, Edward",Violin concerto,1910
+La bohème,"Puccini, Giacomo",Opera,1896
+Tosca,"Puccini, Giacomo",Opera,1900
+Madama Butterfly,"Puccini, Giacomo",Opera,1904
+Turandot,"Puccini, Giacomo",Opera,1924
+Gianni Schicchi,"Puccini, Giacomo",Opera,1918
+Manon Lescaut,"Puccini, Giacomo",Opera,1893
+The Girl of the Golden West,"Puccini, Giacomo",Opera,1910
+Titan Symphony (No. 1),"Mahler, Gustav",Symphony,1888
+Resurrection Symphony (No. 2),"Mahler, Gustav",Symphony,1894
+Tragic Symphony (No. 6),"Mahler, Gustav",Symphony,1904
+Symphony of a Thousand (No. 8),"Mahler, Gustav",Symphony,1906
+The Song of the Earth,"Mahler, Gustav",Symphony,1909
+Des Knaben Wunderhorn,"Mahler, Gustav",Settings,1901
+Songs of a Wayfarer,"Mahler, Gustav",Lieder (song cycle),1885
+Kindertotenlieder,"Mahler, Gustav",Lieder (song cycle),1904
+Symphony No. 5,"Mahler, Gustav",Symphony,1902
+Children's Corner,"Debussy, Claude",Suite,1908
+Prelude to the Afternoon of a Faun,"Debussy, Claude",Tone poem,1894
+La mer,"Debussy, Claude",Piece for orchestra,1905
+Suite bergamasque,"Debussy, Claude",Suite,1905
+Clair de lune,"Debussy, Claude",Piece for solo piano,1905
+Pelléas and Mélisande,"Debussy, Claude",Opera,1902
+Préludes (Book 1),"Debussy, Claude",Preludes,1910
+The Girl with the Flaxen Hair,"Debussy, Claude",Prelude,1910
+The Sunken Cathedral,"Debussy, Claude",Prelude,1910
+Cavalleria Rusticana,"Mascagni, Pietro",Opera,1890
+L'amico Fritz,"Mascagni, Pietro",Opera,1891
+Iris,"Mascagni, Pietro",Opera,1898
+Also sprach Zarathustra,"Strauss, Richard",Tone poem,1896
+Der Rosenkavalier,"Strauss, Richard",Opera,1911
+Salome,"Strauss, Richard",Opera,1905
+Till Eulenspiegel's Merry Pranks,"Strauss, Richard",Tone poem,1895
+An Alpine Symphony,"Strauss, Richard",Tone poem,1915
+Death and Transfiguration,"Strauss, Richard",Tone poem,1889
+A Hero's Life,"Strauss, Richard",Tone poem,1898
+Metamorphosen,"Strauss, Richard",Piece for strings,1945
+Symphonia Domestica,"Strauss, Richard",Tone poem,1903
+The Four Temperaments (No. 2),"Nielsen, Carl",Symphony,1902
+Sinfonia Espansiva (No. 3),"Nielsen, Carl",Symphony,1911
+Inextinguishable Symphony (No. 4),"Nielsen, Carl",Symphony,1916
+Saul and David,"Nielsen, Carl",Opera,1902
+Sinfonia Semplice (No. 6),"Nielsen, Carl",Symphony,1925
+Finlandia,"Sibelius, Jean",Tone poem,1899
+Karelia Suite,"Sibelius, Jean",Suite,1893
+Kullervo,"Sibelius, Jean",Tone poems,1892
+Lemminkäinen Suite,"Sibelius, Jean",Suite,1895
+The Swan of Tuonela,"Sibelius, Jean",Tone poem,1895
+Valse triste,"Sibelius, Jean",Waltz,1904
+Symphony No. 2 in D major,"Sibelius, Jean",Symphony,1902
+Violin Concerto in D minor,"Sibelius, Jean",Violin concerto,1904
+Tapiola,"Sibelius, Jean",Tone poem,1926
+Symphony No. 5 in E-flat major,"Sibelius, Jean",Symphony,1919
+Symphony No. 7 in C major,"Sibelius, Jean",Symphony,1924
+Gymnopédies,"Satie, Erik",Pieces for solo piano,1888
+Three Gnossiennes,"Satie, Erik",Pieces for solo piano,1890
+Vexations,"Satie, Erik",Piece for solo piano,1894
+Desiccated Embryos,"Satie, Erik",Piece for solo piano,1913
+Sonatine bureaucratique,"Satie, Erik",Sonatina,1917
+Parade,"Satie, Erik",Ballet,1917
+Furniture music,"Satie, Erik",Other,1923
+The Lark Ascending,"Vaughan Williams, Ralph",Piece for violin/orchestra,1920
+Fantasia on a Theme by Thomas Tallis,"Vaughan Williams, Ralph",Fantasia,1910
+A Sea Symphony (No. 1),"Vaughan Williams, Ralph",Symphony,1909
+Sinfonia antarctica (N0. 7),"Vaughan Williams, Ralph",Symphony,1952
+A London Symphony (No. 2),"Vaughan Williams, Ralph",Symphony,1913
+Fantasia on Greensleeves,"Vaughan Williams, Ralph",Fantasia,1934
+Rhapsody on a Theme of Paganini,"Rachmaninoff, Sergei",Rhapsody,1934
+Piano Concerto No. 2 in C minor,"Rachmaninoff, Sergei",Piano concerto,1901
+Isle of the Dead,"Rachmaninoff, Sergei",Tone poem,1908
+Symphonic Dances,"Rachmaninoff, Sergei",Suite,1940
+The Bells,"Rachmaninoff, Sergei",Choral symphony,1913
+Prelude in C-sharp minor,"Rachmaninoff, Sergei",Prelude,1892
+Pierrot Lunaire,"Schoenberg, Arnold",Melodrama,1912
+Transfigured Night,"Schoenberg, Arnold",String sextet,1899
+A Survivor from Warsaw,"Schoenberg, Arnold",Cantata,1947
+Five Pieces for Orchestra,"Schoenberg, Arnold",Pieces for orchestra,1909
+Gurre-Lieder,"Schoenberg, Arnold",Cantata,1911
+The Planets,"Holst, Gustav",Suite,1916
+"Mars, the Bringer of War","Holst, Gustav",Piece for orchestra,1914
+"Jupiter, the Bringer of Jollity","Holst, Gustav",Piece for orchestra,1914
+"Neptune, the Mystic","Holst, Gustav",Piece for orchestra,1915
+St. Paul's Suite,"Holst, Gustav",Piece for strings,1912
+Second Suite in F for Military Band,"Holst, Gustav",Suite,1911
+"I Vow to Thee, My Country","Holst, Gustav",Setting,1921
+Egdon Heath,"Holst, Gustav",Tone poem,1927
+Central Park in the Dark,"Ives, Charles",Piece for orchestra,1906
+The Unanswered Question,"Ives, Charles",Piece for orchestra,1908
+Three Places in New England,"Ives, Charles",Piece for orchestra,1914
+Concord Sonata,"Ives, Charles",Piano sonata,1915
+Universe Symphony,"Ives, Charles",Symphony,1928
+Boléro,"Ravel, Maurice",Piece for orchestra,1928
+Pavane for a Dead Princess,"Ravel, Maurice",Piece for solo piano,1899
+Le Tombeau de Couperin,"Ravel, Maurice",Piece for solo piano,1917
+Gaspard de la nuit,"Ravel, Maurice",Piece for solo piano,1908
+Daphnis et Chloé,"Ravel, Maurice",Ballet,1912
+Miroirs,"Ravel, Maurice",Suite,1905
+Rapsodie espagnol,"Ravel, Maurice",Rhapsody,1908
+Jeux d'eau,"Ravel, Maurice",Piece for solo piano,1901
+El amor brujo,"de Falla, Manuel",Ballet,1914
+Ritual Fire Dance,"de Falla, Manuel",Dance,1915
+The Three-Cornered Hat,"de Falla, Manuel",Ballet,1919
+Nights in the Gardens of Spain,"de Falla, Manuel",Piece for piano/orchestra,1915
+Master Peter's Puppet Show,"de Falla, Manuel",Opera,1923
+Fountains of Rome,"Respighi, Ottorino",Tone poem,1916
+Pines of Rome,"Respighi, Ottorino",Tone poem,1924
+Roman Festivals,"Respighi, Ottorino",Tone poem,1928
+Ancient Airs and Dances No. 1,"Respighi, Ottorino",Suite,1917
+Botticelli Triptych,"Respighi, Ottorino",Piece for orchestra,1927
