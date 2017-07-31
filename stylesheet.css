@@ -1,0 +1,57 @@
+#wrapper {
+	overflow: hidden;
+}
+
+#outer {
+	overflow: scroll;
+	height: 100%
+}
+
+#axis_container {
+	overflow: scroll
+}
+
+.axis text {
+	font: 8px sans-serif;
+}
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.composer:hover rect {
+	fill: darkblue;
+}
+.composer:hover rect.work {
+	fill: orange;
+}
+.composer:hover text {
+	fill: white;
+}
+
+#tooltip {
+	position: absolute;
+	background: white;
+	border-style: solid;
+	border-width: 1px;
+}
+
+#infobox {
+	border-style: solid;
+	overflow: scroll;
+}
+
+img {
+	display: none;
+}
+img[src] {
+	display: block;
+}
+
+#info_text {
+	position: absolute;
+	left: 230px;
+	top: -10px;
+}

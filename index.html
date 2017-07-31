@@ -1,55 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <style>
-	#wrapper {
-		overflow: hidden;
-	}
-	#outer {
-		overflow: scroll;
-		height: 100%
-	}
-	
-	#axis_container {
-		overflow: scroll
-	}
-	
-	.axis text {
-		font: 8px sans-serif;
-	}
-	.axis path,
-	.axis line {
-		fill: none;
-		stroke: #000;
-		shape-rendering: crispEdges;
-	}
-
-	.composer:hover rect {
-		fill: darkblue;
-	}
-	.composer:hover rect.work {
-		fill: orange;
-	}
-	.composer:hover text {
-		fill: white;
-	}
-	
-	#tooltip {
-		position: absolute;
-		border-style: solid black;
-		background: white
-	}
-  </style>
-  
   <head>
-	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<title>Music Timeline</title>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
   
   <body>
-	<div id="wrapper"><div id="outer">
-		<svg id="chart"></svg>
-	</div></div>
+	<div id="infobox">
+			<img id="info_image" height="280px" width = "210px">
+			<div id="info_text">
+				<h2 id="info_name"></h2>
+				<p id="info_works"></p>
+			</div>
+	</div>
+	
+	<div id="wrapper">
+		<div id="outer">
+			<svg id="chart"></svg>
+		</div>
+	</div>
 
 	<div id="axis_container">
 		<svg id="axis_svg"></svg>
@@ -58,18 +29,24 @@
 	<div id="tooltip">
 	</div>
     <script type="text/javascript">
+		const pixelsPerYear = 4;
+		const barHeight = 22;
+		const timelinePercent = 0.5;
+		const infoPercent = 0.4;
+		const dateToString = d3.timeFormat("%B %e, %Y");
+	
+		d3.select("#infobox")
+			.attr("style", "height: " + (window.innerHeight * infoPercent) + "px");
+	
+		//Wrapper to remove side scrollbar
 		d3.select("#wrapper")
-			.attr("style", "height: " + window.innerHeight * 0.9 + "px");
+			.attr("style", "height: " + (window.innerHeight * timelinePercent) + "px");
 		var outer = document.getElementById('outer');
 		outer.style.paddingBottom = outer.offsetHeight - outer.clientHeight + "px";
 		
-		var pixelsPerYear = 4;
-		var barHeight = 20;
-		var dateToString = d3.timeFormat("%B %e, %Y");
-		
-		var margin = {top: 20, bottom: 20, right: 30, left: 30},
+		var margin = {top: 10, bottom: 20, right: 30, left: 30},
 			width = window.innerWidth - margin.right - margin.left,
-			height = (window.innerHeight * 0.9) - margin.top - margin.bottom;
+			height = (window.innerHeight * timelinePercent) - margin.top - margin.bottom;
 		
 		var xScale = d3.scaleTime();
 		//var yScale = d3.scaleLinear(); 
@@ -96,7 +73,8 @@
 			}
 			else {
 				var commaIndex = name.indexOf(",");
-				return name.substring(0, commaIndex);
+				var lastNameRaw = name.substring(0, commaIndex);
+				return lastNameRaw.replace(" ", "_");
 			}
 		}
 		
@@ -107,11 +85,13 @@
 				birth: new Date(d.Birth),
 				death: d.Death === "N/A" ? new Date() : new Date(d.Death),
 				country: d.Nationality,
+				imageLink: d.Image,
 				barWidth: function(d) { return xScale(d.death) - xScale(d.birth); },
 				works: {}
 			};
 		}
-			
+		
+		//Create bars for lives of composers
 		d3.csv("Composers.csv", parseComposer, function(error, data) {
 			if (error) throw error;
 			console.log(data[0]);
@@ -120,7 +100,7 @@
 			var today = new Date();
 			var minDate = d3.min(data, function(d) { return d.birth; });
 			
-			var chartHeight = data.length * barHeight;
+			var chartHeight = (data.length * barHeight) + margin.bottom;
 			var chartWidth = (today.getFullYear() - minDate.getFullYear()) * pixelsPerYear;
 			
 			chart.attr("height", chartHeight)
@@ -155,7 +135,21 @@
 			  .enter().append("g")
 				.attr("class", "composer")
 				.attr('id', function(d) { return d.shortName; })
-				.attr("transform", function(d, i) { return "translate(" + xScale(d.birth) + "," + (i * barHeight) + ")"; });
+				.attr("transform", function(d, i) { return "translate(" + xScale(d.birth) + "," + (i * barHeight) + ")"; })
+				.on("click", function(d) {
+					d3.select("#info_image")
+						.attr("src", d.imageLink);
+						
+					var name_raw = d.name;
+					var comma = name_raw.indexOf(",");
+					var last = name_raw.substring(0, comma);
+					var first = name_raw.substring(comma + 1, name_raw.length);
+					d3.select("#info_name")
+						.text(first + " " + last);
+						
+					d3.select("#info_works")
+						.text("Work");
+				});
 				
 			bar.append("rect")
 				.attr("width", function(d) {
@@ -191,7 +185,7 @@
 				.attr("x", 3)
 				.attr("y", 14)
 				.attr("font-size", 16)
-				.text(function(d) { return d.shortName; })
+				.text(function(d) { return d.shortName.replace("_", " "); })
 				.on("mouseover", function(d) {
 					tooltip.transition()
 						.duration(400)
@@ -222,6 +216,7 @@
 			};
 		}
 		
+		//Create marks for works of composers
 		d3.csv("Works.csv", parseWork, function(error, data) {
 			if (error) throw error;
 			
@@ -229,8 +224,8 @@
 			data.forEach(function(work) {
 				var composer = composerData.find(function(item) { return item.shortName === work.creator; });
 				
-				if (composer.xScale === undefined) {
-					composer.xScale = d3.scaleTime()
+				if (composer.scale === undefined) {
+					composer.scale = d3.scaleTime()
 					.domain([composer.birth, composer.death])
 					.range([0, composer.barWidth]);
 				}
@@ -250,7 +245,7 @@
 					.attr("fill-opacity", 0.6)
 					.attr("height", barHeight * 0.8)
 					.attr("width", workWidth)
-					.attr("transform", "translate(" + composer.xScale(work.date) + ",0)")
+					.attr("transform", "translate(" + composer.scale(work.date) + ",0)")
 					.on("mouseover", function(d) {
 						tooltip.transition()
 							.duration(400)
@@ -272,6 +267,7 @@
 			});
 		});
 		
+		//Link scrollbar of axis to the timeline proper
 		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
 		
 		function scrollLinker(div) {
