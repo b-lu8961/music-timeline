@@ -5,6 +5,7 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<title>Music Timeline</title>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   
   <body>
@@ -275,20 +276,13 @@
 			div.scrollLeft = scrollAmount;
 		}
 		
-		fetch("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Aaron%20Copland")
-			.then(function(response) {
-				if (response.status !== 200) {
-					console.log("There was a problem: Code " + response.status);
-					return;
-				}
-				
-				response.json().then(function(data) {
-					console.log(data);
-				})
-			})
-			.catch(function(error) {
-				console.log("Error: " + error);
-			});
+		$.ajax({
+			type: "POST",
+			url: "getWikiIntro.py",
+			data: {param: "Aaron Copland"}
+		}).done(function(data) {
+			console.log("# of args: " + data);
+		});
 	</script>
   </body>
   
