@@ -274,6 +274,21 @@
 			var scrollAmount = document.getElementById('outer').scrollLeft;
 			div.scrollLeft = scrollAmount;
 		}
+		
+		fetch("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Aaron%20Copland")
+			.then(function(response) {
+				if (response.status !== 200) {
+					console.log("There was a problem: Code " + response.status);
+					return;
+				}
+				
+				response.json().then(function(data) {
+					console.log(data);
+				})
+			})
+			.catch(function(error) {
+				console.log("Error: " + error);
+			});
 	</script>
   </body>
   
