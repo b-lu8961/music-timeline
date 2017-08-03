@@ -51,7 +51,7 @@ img[src] {
 }
 
 #info_text {
-	position: absolute;
+	position: relative;
 	left: 230px;
-	top: -10px;
+	top: -300px;
 }
