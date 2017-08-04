@@ -5,12 +5,11 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<title>Music Timeline</title>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   
   <body>
 	<div id="infobox">
-			<img id="info_image" height="280px" width = "210px">
+			<img id="info_image">
 			<div id="info_text">
 				<h2 id="info_name"></h2>
 				<ul id="info_works"></ul>
@@ -33,13 +32,15 @@
 		const pixelsPerYear = 4;
 		const barHeight = 22;
 		const timelinePercent = 0.5;
-		const infoPercent = 0.4;
+		const infoHeight = window.innerHeight * 0.4;
 		const dateToString = d3.timeFormat("%B %e, %Y");
 	
 		d3.select("#infobox")
-			.attr("style", "height: " + (window.innerHeight * infoPercent) + "px");
+			.attr("style", "height: " + infoHeight + "px");
 		d3.select("#info_text")
-			.attr("style", "height: " + (window.innerHeight * infoPercent) + "px");
+			.attr("style", "height: " + infoHeight + "px; width: " + (window.innerWidth * 0.5) + "px");
+		d3.select("#info_image")
+			.attr("style", "height: " + infoHeight + "px; width: " + (infoHeight * 0.75) + "px");
 	
 		//Wrapper to remove side scrollbar
 		d3.select("#wrapper")
@@ -217,7 +218,7 @@
 						.style("opacity", 0)
 						.on("end", function() {
 							tooltip.style("left", "0px")
-							.style("top", height + "px");
+							.style("top", (height + infoHeight) + "px");
 						});
 				});;
 				
