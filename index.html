@@ -9,10 +9,15 @@
   
   <body>
 	<div id="infobox">
-			<img id="info_image">
+			<img id="info_image" src="https://qph.ec.quoracdn.net/main-qimg-c8148de329017c58fb21c9404babb254-c">
 			<div id="info_text">
-				<h2 id="info_name"></h2>
-				<ul id="info_works"></ul>
+				<h2 id="text_name">Music Timeline</h2>
+				<p id="text_summary">Click on a composer to learn more.</p>
+				<ul id="info_worklist"></ul>
+			</div>
+			<div id="info_works">
+				<h3>Works</h3>
+				<ul id="works_list"><ul>
 			</div>
 	</div>
 	
@@ -33,14 +38,16 @@
 		const barHeight = 22;
 		const timelinePercent = 0.5;
 		const infoHeight = window.innerHeight * 0.4;
-		const dateToString = d3.timeFormat("%B %e, %Y");
+		const today = new Date();
 	
 		d3.select("#infobox")
 			.attr("style", "height: " + infoHeight + "px");
-		d3.select("#info_text")
-			.attr("style", "height: " + infoHeight + "px; width: " + (window.innerWidth * 0.5) + "px");
 		d3.select("#info_image")
 			.attr("style", "height: " + infoHeight + "px; width: " + (infoHeight * 0.75) + "px");
+		d3.select("#info_text")
+			.attr("style", "width: " + (window.innerWidth * 0.45) + "px");
+		d3.select("#works_list")
+			.attr("style", "width: " + (window.innerWidth * 0.33) + "px");
 	
 		//Wrapper to remove side scrollbar
 		d3.select("#wrapper")
@@ -71,6 +78,16 @@
 			
 		var timeline = d3.select(".timeline");
 			
+		function dateToString(date) {
+			if (date === today) {
+				return "N/A";
+			}
+			else {
+				var dateFormat = d3.timeFormat("%B %e, %Y");
+				return dateFormat(date);
+			}
+		}
+		
 		function getShortName(name) {
 			if (name.startsWith("des Prez")) {
 				return "Josquin";
@@ -87,38 +104,17 @@
 				name: d.Composer,
 				shortName: getShortName(d.Composer),
 				birth: new Date(d.Birth),
-				death: d.Death === "N/A" ? new Date() : new Date(d.Death),
+				death: d.Death === "N/A" ? today : new Date(d.Death),
 				country: d.Nationality,
 				imageLink: d.Image,
+				summary: d.Summary,
 				barWidth: function(d) { return xScale(d.death) - xScale(d.birth); },
 				works: {}
 			};
 		}
 		
-		function fillInfobox(composer) {
-			//Set image to use the correct link
-			d3.select("#info_image")
-				.attr("src", d.imageLink);
-					
-			//Change the title to the right name
-			var name_raw = d.name;
-			var comma = name_raw.indexOf(",");
-			var last = name_raw.substring(0, comma);
-			var first = name_raw.substring(comma + 1, name_raw.length);
-			d3.select("#info_name")
-				.text(first + " " + last);
-				
-			//Make list of composer's works
-			var workList = d3.select("#info_works");
-			for (year in composer.works) {
-				var worksOfYear = composer.works[year].split("<br/><br/>");
-				for (workText in worksOfYear) {
-					var workInfo = workText.split("<br/>");
-					workList.append("li")
-						.text(workInfo[0] + " (" + workInfo[2] + ", " + workInfo[1] + ")");
-				}
-			}
-			
+		function formatSummary(summary) {
+			return summary.replace(/\\n/g, "</br></br>");
 		}
 		
 		//Create bars for lives of composers
@@ -127,7 +123,6 @@
 			console.log(data[0]);
 			
 			composerData = data;
-			var today = new Date();
 			var minDate = d3.min(data, function(d) { return d.birth; });
 			
 			var chartHeight = (data.length * barHeight) + margin.bottom;
@@ -170,17 +165,25 @@
 					//Set image to use correct link
 					d3.select("#info_image")
 						.attr("src", d.imageLink);
+						
+					//Make works div visilble
+					d3.select("#info_works")
+						.attr("style", "display: inline-block");
 					
 					//Change title to the correct name
 					var name_raw = d.name;
 					var comma = name_raw.indexOf(",");
 					var last = name_raw.substring(0, comma);
 					var first = name_raw.substring(comma + 1, name_raw.length);
-					d3.select("#info_name")
+					d3.select("#text_name")
 						.text(first + " " + last);
 						
+					//Set text to summary
+					d3.select("#text_summary")
+						.html(formatSummary(d.summary));
+						
 					//Make list of composer's works
-					var workList = d3.select("#info_works");
+					var workList = d3.select("#works_list");
 					workList.selectAll("li").remove();
 					for (year in d.works) {
 						var worksOfYear = d.works[year].split("<br/><br/>");
