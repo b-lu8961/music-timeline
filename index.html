@@ -77,6 +77,14 @@
 			.attr("overflow", "scroll");
 			
 		var timeline = d3.select(".timeline");
+		
+		//Link scrollbar of axis to the timeline proper
+		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
+		
+		function scrollLinker(div) {
+			var scrollAmount = document.getElementById('outer').scrollLeft;
+			div.scrollLeft = scrollAmount;
+		}
 			
 		function dateToString(date) {
 			if (date === today) {
@@ -364,14 +372,6 @@
 			});
 		});
 		*/
-		
-		//Link scrollbar of axis to the timeline proper
-		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
-		
-		function scrollLinker(div) {
-			var scrollAmount = document.getElementById('outer').scrollLeft;
-			div.scrollLeft = scrollAmount;
-		}
 		
 		//https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Aaron%20Copland
 	</script>
