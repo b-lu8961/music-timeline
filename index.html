@@ -247,7 +247,59 @@
 							.style("top", height + "px");
 						});
 				});;
-		});
+		})
+			.on("load", 
+				//Create marks for works of composers
+				d3.csv("Works.csv", parseWork, function(error, data) {
+					if (error) throw error;
+					
+					var workWidth = 3;
+					data.forEach(function(work) {
+						var composer = composerData.find(function(item) { return item.shortName === work.creator; });
+						
+						if (composer.scale === undefined) {
+							composer.scale = d3.scaleTime()
+							.domain([composer.birth, composer.death])
+							.range([0, composer.barWidth]);
+						}
+						
+						if (!composer.works.hasOwnProperty(work.year)) {
+							composer.works[work.year] = work.name + "<br/>" + work.year + "<br/>" + work.type;
+						}
+						else {
+							composer.works[work.year] += "<br/><br/>";
+							composer.works[work.year] += work.name + "<br/>" + work.year + "<br/>" + work.type;
+						}
+						
+						d3.select("#" + work.creator)
+						  .append("rect")
+							.attr("class", "work")
+							.attr("fill", "black")
+							.attr("fill-opacity", 0.6)
+							.attr("height", barHeight * 0.8)
+							.attr("width", workWidth)
+							.attr("transform", "translate(" + composer.scale(work.date) + ",0)")
+							.on("mouseover", function(d) {
+								tooltip.transition()
+									.duration(400)
+									.style("opacity", .9);
+								tooltip.html(composer.works[work.year])
+									.style("left", (d3.event.pageX + 15) + "px")
+									.style("top", (d3.event.pageY + 15) + "px");
+							})
+							.on("mouseout", function(d) {
+								tooltip.transition()
+									.duration(400)
+									.style("opacity", 0)
+									.on("end", function() {
+										tooltip.style("left", "0px")
+										.style("top", height + "px");
+									});
+							});
+						
+					});
+				})
+			);
 		
 			
 		function parseWork(d) {
@@ -260,6 +312,7 @@
 			};
 		}
 		
+		/*
 		//Create marks for works of composers
 		d3.csv("Works.csv", parseWork, function(error, data) {
 			if (error) throw error;
@@ -310,6 +363,7 @@
 				
 			});
 		});
+		*/
 		
 		//Link scrollbar of axis to the timeline proper
 		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
