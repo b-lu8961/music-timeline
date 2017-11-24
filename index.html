@@ -103,6 +103,7 @@
 			
 			xScale.domain([minDate, today])
 				.range([0, chartWidth]);
+			xScale.nice(50);
 			
 			//yScale.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 			
@@ -112,7 +113,7 @@
 			  .append("g")
 				.attr("class", "axis")
 				.attr("transform", "translate(" + margin.left + ",0)")
-				.call(d3.axisBottom(xScale));
+				.call(d3.axisBottom(xScale).ticks(20));
 			/*
 			chart.append("g")
 				.attr("class", "axis y-axis")
@@ -136,7 +137,7 @@
 					d3.select("#info_image")
 						.attr("src", d.imageLink);
 						
-					//Make works div visilble
+					//Make works div visible
 					d3.select("#info_works")
 						.attr("style", "display: inline-block");
 					
@@ -308,8 +309,20 @@
 			if (name.startsWith("des Prez")) {
 				return "Josquin";
 			}
+			else if (name.startsWith("von Bingen")) {
+				return "Hildegard";
+			}
+			else if (name.startsWith("de Machaut")) {
+				return "Machaut";
+			}
+			else if (name.startsWith("de Vitry")) {
+				return "Vitry";
+			}
 			else {
 				var commaIndex = name.indexOf(",");
+				if (commaIndex === -1) {
+					return name;
+				}
 				var lastNameRaw = name.substring(0, commaIndex);
 				return lastNameRaw.replace(" ", "_");
 			}
