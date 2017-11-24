@@ -200,7 +200,7 @@
 				.attr("x", 3)
 				.attr("y", 14)
 				.attr("font-size", 16)
-				.text(function(d) { return d.shortName.replace("_", " "); })
+				.text(function(d) { return d.shortName.replace(/_/g, " "); })
 				.on("mouseover", function(d) {
 					tooltip.transition()
 						.duration(400)
@@ -324,7 +324,7 @@
 					return name;
 				}
 				var lastNameRaw = name.substring(0, commaIndex);
-				return lastNameRaw.replace(" ", "_");
+				return lastNameRaw.replace(/ /g, "_");
 			}
 		}
 		
