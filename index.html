@@ -64,6 +64,7 @@
 		//var yScale = d3.scaleLinear(); 
 		
 		var composerData = [];
+		var colorMap = new Map();
 
 		var chart = d3.select("#chart")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -79,22 +80,30 @@
 			
 		var timeline = d3.select(".timeline");
 		
-		//Link scrollbar of axis to the timeline proper
-		outer.addEventListener("scroll", scrollLinker.bind(this, document.getElementById('axis_container')), false);
-		
-		function scrollLinker(div) {
-			var scrollAmount = document.getElementById('outer').scrollLeft;
-			div.scrollLeft = scrollAmount;
+		//Sync scrolling of timeline and axis
+		//From https://stackoverflow.com/a/49420097
+		var axis = document.getElementById("axis_container");
+		var ignoreScrollEvents = false
+		function syncScroll(element1, element2) {
+			element1.addEventListener("scroll", function (e) {
+			var ignore = ignoreScrollEvents;
+			ignoreScrollEvents = false;
+			if (ignore) {
+				return;
+			}
+			ignoreScrollEvents = true;
+			element2.scrollLeft = element1.scrollLeft;
+			})
 		}
+		syncScroll(outer, axis)
+		syncScroll(axis, outer)
 		
 		//Create bars for lives of composers
 		d3.csv("Composers.csv", parseComposer, function(error, data) {
 			if (error) throw error;
-			console.log(data[0]);
 			
 			composerData = data;
 			var minDate = d3.min(data, function(d) { return d.birth; });
-			
 			var chartHeight = (data.length * barHeight) + margin.bottom;
 			var chartWidth = (today.getFullYear() - minDate.getFullYear()) * pixelsPerYear;
 			
@@ -113,7 +122,7 @@
 			  .append("g")
 				.attr("class", "axis")
 				.attr("transform", "translate(" + margin.left + ",0)")
-				.call(d3.axisBottom(xScale).ticks(20));
+				.call(d3.axisBottom(xScale).ticks(20).tickFormat(d3.timeFormat("%Y")));
 			/*
 			chart.append("g")
 				.attr("class", "axis y-axis")
@@ -173,7 +182,17 @@
 					return barWidth;
 				})
 				.attr("height", barHeight * 0.8)
-				.attr("fill", "lightblue")
+				.attr("fill", function(d) {
+					if (colorMap.has(d.country)) {
+						return colorMap.get(d.country);
+					} 
+					else {
+						var hue = Math.floor(Math.random() * 72) * 5;
+						var newColor = "hsl(" + hue + ", 80%, 75%)";
+						colorMap.set(d.country, newColor);
+						return newColor;
+					}
+				})
 				.on("mouseover", function(d) {
 					tooltip.transition()
 						.duration(400)
@@ -221,6 +240,7 @@
 				
 			//Create marks for works of composers
 			d3.csv("Works.csv", parseWork, function(error, data) {
+				console.log("works");
 				if (error) throw error;
 				
 				const workWidth = 3;
@@ -291,7 +311,11 @@
 				creator: getShortName(d.Composer),
 				type: d.Type,
 				year: d.Date,
-				date: new Date(+d.Date, 6, 15)
+				date: new Date(+d.Date, 6, 15),
+				key: d.Key,
+				opus: d.Opus,
+				num: d.Number,
+				coll: d.Collection
 			};
 		}
 		
@@ -317,6 +341,15 @@
 			}
 			else if (name.startsWith("de Vitry")) {
 				return "Vitry";
+			}
+			else if (name.startsWith("Wieck")) {
+				return "Schumann, C";
+			}
+			else if (name.startsWith("Bach, J")) {
+				return "Bach, JS;
+			}
+			else if (name.startsWith("Bach, C")) {
+				return "Bach, CPE";
 			}
 			else {
 				var commaIndex = name.indexOf(",");
