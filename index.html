@@ -219,7 +219,7 @@
 				.attr("x", 3)
 				.attr("y", 14)
 				.attr("font-size", 16)
-				.text(function(d) { return d.shortName.replace(/_/g, " "); })
+				.text(function(d) { return d.shortName.replace(/_/g, " ").replace(/zqz/g, ","); })
 				.on("mouseover", function(d) {
 					tooltip.transition()
 						.duration(400)
@@ -240,7 +240,6 @@
 				
 			//Create marks for works of composers
 			d3.csv("Works.csv", parseWork, function(error, data) {
-				console.log("works");
 				if (error) throw error;
 				
 				const workWidth = 3;
@@ -330,6 +329,7 @@
 		}
 		
 		function getShortName(name) {
+			commaStr = "zqz";
 			if (name.startsWith("des Prez")) {
 				return "Josquin";
 			}
@@ -343,13 +343,13 @@
 				return "Vitry";
 			}
 			else if (name.startsWith("Wieck")) {
-				return "Schumann, C";
+				return "Schumann" + commaStr + "_C";
 			}
 			else if (name.startsWith("Bach, J")) {
-				return "Bach, JS";
+				return "Bach" + commaStr + "_JS";
 			}
 			else if (name.startsWith("Bach, C")) {
-				return "Bach, CPE";
+				return "Bach" + commaStr + "_CPE";
 			}
 			else {
 				var commaIndex = name.indexOf(",");
